@@ -6,6 +6,7 @@ from PIL import Image, ImageDraw
 import csv
 import pandas as pd
 
+#gridly
 def markHorizontalLine(x1: int, y1: int, x2: int, y2: int, color: str = 'red', thickness: int = 1):
     """
     Draw a horizontal line on the image using Pillow.
@@ -19,7 +20,7 @@ def markHorizontalLine(x1: int, y1: int, x2: int, y2: int, color: str = 'red', t
     # Create a blank image
     #img = Image.new("RGB", (500, 500), "white")
     img = Image.new("RGB", (3146, 2382), "white")
-   
+
     draw = ImageDraw.Draw(img)
 
     # Draw the line
@@ -28,6 +29,7 @@ def markHorizontalLine(x1: int, y1: int, x2: int, y2: int, color: str = 'red', t
     # Return the image
     return img
 
+#gridify
 def overlayGrid(image_path: str, grid_color: str = 'lightgrey', grid_size: tuple = (42,32)):
     """
     Overlay a grid on top of an image.
@@ -60,6 +62,7 @@ def overlayGrid(image_path: str, grid_color: str = 'lightgrey', grid_size: tuple
     # Return the image with the grid
     return img
 
+#
 def read_csv_builtin(filename: str) -> list:
     """
     Read CSV data using built-in csv module
@@ -74,6 +77,7 @@ def read_csv_builtin(filename: str) -> list:
             data.append(row)
     return data
 
+#
 def read_csv_pandas(filename: str) -> pd.DataFrame:
     """
     Read CSV data using pandas
@@ -82,6 +86,7 @@ def read_csv_pandas(filename: str) -> pd.DataFrame:
     """
     return pd.read_csv(filename)
 
+#
 def read_excel(filename: str, sheet_name: str = None) -> pd.DataFrame:
     """
     Read Excel data using pandas
@@ -91,125 +96,131 @@ def read_excel(filename: str, sheet_name: str = None) -> pd.DataFrame:
     """
     return pd.read_excel(filename, sheet_name=sheet_name)
 
-# Example usage:
+#
+def spacer():
+    """
+    Print a blank line or separator for better readability in the output.
+    """
+    print("\n" + "-" * 40 + "\n")
+
+#gridify scans
+def job1():
+    """
+    Batch process images to overlay grids and save them.
+    """
+    # list of pictures
+    files = [
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars1.png",
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars1+.png",
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars2.png",
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars3.png",
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars57+.png",
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars78+.png",
+    "/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars114+.png"
+    ]
+    ##########
+    # list of save names
+    names = [
+    "Cars1.png",
+    "Cars2.png",
+    "Cars3.png",
+    "Cars4.png",
+    "Cars5.png",
+    "Cars6.png",
+    "Cars7.png"
+    ]
+    ##########
+    # list of dimensions
+    pixels = [
+    (3146,2382),
+    (2083,1152),
+    (2999,2381),
+    (3308,2549),
+    (1214,2114),
+    (2047,1197),
+    (2125,1197)
+    ]
+    ##########
+    # grid size
+    grids = [
+    (42,32),
+    (28,16),
+    (40,32),
+    (44,34),
+    (14,22),
+    (32,16),
+    (28,16)
+    ]
+    ##########
+    # Process each image
+    for i in range(len(files)):
+        # Get input and output paths
+        input_image = files[i]
+        output_image = names[i]
+
+        # Overlay the grid
+        grid_image = overlayGrid(input_image, grid_color='lightgrey', grid_size=grids[i])
+
+        # Save the image with the grid
+        grid_image.save(output_image)
+        print(f"Image with grid saved as {output_image}")
+
+#csv
+def job2():
+    '''
+    Read CSV file using both built-in csv module and pandas
+    '''
+    # CSV file reading
+    csv_file = "AADA.csv"
+    try:
+        data_pandas = read_csv_pandas(csv_file)
+        print("\nCSV Data:")
+        print(data_pandas.head())
+        print(data_pandas.columns)
+        print(data_pandas['TYPE'])
+        print(data_pandas.iloc[0])
+    except FileNotFoundError:
+        print(f"Error: Could not find CSV file '{csv_file}'")
+    except Exception as e:
+        print(f"Error reading CSV file: {e}")
+
+#xls
+def job3():
+    '''
+    '''
+    # Excel file reading
+    excel_file = "AADA.xls"
+    try:
+        df = read_excel(excel_file, sheet_name=0)  # Specify the sheet name or index
+        print("\nExcel Data:")
+        print(df.head())
+        print(df.columns)
+    except FileNotFoundError:
+        print(f"Error: Could not find Excel file '{excel_file}'")
+    except Exception as e:
+        print(f"Error reading Excel file: {e}")
+
+#???
+def job4():
+    pass
+
+def main():
+    """Main execution function"""
+    try:
+        # Process images
+        #job1()  # Process and save gridded images
+        #spacer()
+        
+        # Process data files
+        job2()  # Read and display CSV data
+        spacer()
+        job3()  # Read and display Excel data
+        spacer()
+        
+    except Exception as e:
+        print(f"Error in main execution: {e}")
+
 if __name__ == "__main__":
-    # Example usage for markHorizontalLine
-    #x1, y1, x2, y2 = 50, 100, 450, 100  # Coordinates for the line
-    #color = 'blue'
-    #thickness = 2
-
-    # Create the image with the line
-    #image = markHorizontalLine(x1, y1, x2, y2, color, thickness)
-
-    # Save the image to a file
-    #output_file = "output_line.png"
-    #image.save(output_file)
-    #print(f"Image saved as {output_file}")
-
-    # Display the image (optional)
-    #image.show()
-
-    # Example usage for overlayGrid
-    input_image = "/home/me/BACKUP/Links/CardCutter/gimp/_cars1.png"  # Replace with the path to your image
-    output_image = "cars1.png"
-
-    # Overlay the grid
-    grid_image = overlayGrid(input_image, grid_color='lightgrey', grid_size=(42,32))
-
-    # Save the image with the grid
-    #grid_image.save(output_image)
-    #print(f"Image with grid saved as {output_image}")
-
-##########
-# list of pictures
-files = [
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars1.png",
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars1+.png",
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars2.png",
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars3.png",
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars57+.png",
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars78+.png",
-"/home/me/BACKUP/PROJECTS/CardCutter/gimp/_cars114+.png"
-]
-##########
-# list of save names
-names = [
-"Cars1.png",
-"Cars2.png",
-"Cars3.png",
-"Cars4.png",
-"Cars5.png",
-"Cars6.png",
-"Cars7.png"
-]
-##########
-# list of dimensions
-pixels = [
-(3146,2382),
-(2083,1152),
-(2999,2381),
-(3308,2549),
-(1214,2114),
-(2047,1197),
-(2125,1197)
-]
-##########
-# grid size
-grids = [
-(42,32),
-(28,16),
-(40,32),
-(44,34),
-(14,22),
-(32,16),
-(28,16)
-]
-##########
-
-'''
-##########
-#
-# REPEAT FOR EACH PICTURE IN files VARIABLE
-#
-##########
-
-    # Example usage for overlayGrid
-    input_image = "/home/me/BACKUP/Links/CardCutter/gimp/_cars1.png"  # Replace with the path to your image
-    output_image = "cars1.png" # Replace with the desired output file name
-
-    # Overlay the grid
-    grid_image = overlayGrid(input_image, grid_color='lightgrey', grid_size=(42,32)) # Replace with the desired grid size
-
-    # Save the image with the grid
-    grid_image.save(output_image)
-    print(f"Image with grid saved as {output_image}")
+    main()
 
 
-'''
-
-# Process each image
-for i in range(len(files)):
-    # Get input and output paths
-    input_image = files[i]
-    output_image = names[i]
-
-    # Overlay the grid
-    grid_image = overlayGrid(input_image, grid_color='lightgrey', grid_size=grids[i])
-
-    # Save the image with the grid
-    grid_image.save(output_image)
-    print(f"Image with grid saved as {output_image}")
-
-# Example usage for reading Excel files
-excel_file = "AADA.xls"  # Replace with your Excel file path
-sheet_name = "Sheet1"  # Optional: specify sheet name
-
-# Read entire Excel file (first sheet by default)
-df = read_excel(excel_file)
-
-# Read specific sheet
-#df_sheet = read_excel(excel_file, sheet_name="Sheet1")
-
-# Access data
-#print(df.head())  # View first 5 rows
-#print(df.columns)  # View column names
