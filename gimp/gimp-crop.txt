@@ -1,0 +1,20 @@
+how do i crop the right hand side of a picture using 'gimp' on a raspberry pi 4
+
+
+To crop the right-hand side of an image using GIMP on a Raspberry Pi, you can follow these steps:
+
+1. Open GIMP and load the image that you want to crop.
+2. Go to the "Image" menu and select "Crop". This will open the Crop dialog box.
+3. In the Crop dialog box, set the following options:
+	* X position: Set this to the desired x-position of the top left corner of the cropped image, measured from the left edge of the original image. For example, if you want to crop the right-hand side of the image, you can set this option to the width of the original image minus the amount you want to crop.
+	* Y position: Set this to 0 (zero).
+	* Width: Set this to the desired width of the cropped image. For example, if you want to crop the right-hand side of the image, you can set this option to the width of the original image minus the amount you want to crop.
+	* Height: Set this to the height of the original image.
+4. Click "OK" to apply the crop settings and save the cropped image.
+
+Note that the units used for the x-position, y-position, width, and height options are pixels. You can also use other units such as centimeters or inches if you prefer.
+
+
+
+
+

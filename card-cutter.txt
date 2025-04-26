@@ -1,0 +1,62 @@
+# /media/me/H500/BACKUP/PROJECTS/CardCuttter/card-cutter.py
+# #!/bin/python
+# These .bmp files are to be 'CUT' into individual picture files
+# Each shape is recorded in a text file of Name, x, y, width, height
+
+########################################################################
+#CUT OUT COUNTERS FROM 5 PICTURES (.bmp)
+########################################################################
+    ####################
+#_cars1 = 34 * 44 blocks (2537*3311px) = 0.76 ratio
+#JOB 1 - TRIM CARD FOR CUTTING 1 SQURE X & Y
+#	1 BLOCKW = WIDTH/16	#
+#	1 BLOCKH = HEIGHT/10.5	#
+#	CHK - width & height are proportional
+#	NOW ZEROED & OK X=0, Y=0 W=??? H=???			????????????????????
+#JOB 2 - CUT OUT RECTANGLES
+#	block   1     mines   16@2*2	H=2
+#	blocks  02-11 cars    16@2*4	H=4
+#	blocks  09-11 cars - split again @ cols (bikes & trikes)
+#       DISSECT BIKES & TRIKES
+#		block09 @ col 08 = 4 bikes
+#		block10 @ col 10 = 4 bikes
+#		block11 @ col 12 = 4 bikes
+
+#JOB0   #MOVE TO TOP WHEN OPERATIONAL
+
+    ####################
+#_cars1+ = 16*28 blocks (1197*2125px) = 0.56 ratio
+#	8*7cars=16*28 blocks
+
+#JOB1   #
+#JOB0   #MOVE TO TOP WHEN OPERATIONAL
+
+    ####################
+#_cars3=34*44 blocks(2550*3338px) = 0.764 ratio
+
+#JOB1   #
+#JOB0   #MOVE TO TOP WHEN OPERATIONAL
+
+    ####################
+#car57=28*28#(1301/2164)=0.601 ratio    #1300/2150=0.604
+#
+#JOB1   #
+#JOB0   #MOVE TO TOP WHEN OPERATIONAL
+
+    ####################
+#cars78=16*(1197/2047)=0.5846
+#1200/2000=0.6
+
+#JOB1   #
+#JOB0   #MOVE TO TOP WHEN OPERATIONAL
+
+########################################################################
+#cars114=16*28=(1190/2125)=0.56
+#
+#JOB1   #
+#JOB0   #MOVE TO TOP WHEN OPERATIONAL
+
+########################################################################
+########################################################################
+########################################################################
+########################################################################
