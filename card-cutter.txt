@@ -1,4 +1,3 @@
-# /media/me/H500/BACKUP/PROJECTS/CardCuttter/card-cutter.py
 # #!/bin/python
 # These .bmp files are to be 'CUT' into individual picture files
 # Each shape is recorded in a text file of Name, x, y, width, height
